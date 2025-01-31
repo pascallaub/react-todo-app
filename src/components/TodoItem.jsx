@@ -1,21 +1,24 @@
-import React from "react";
-import useTodoStore from "../stores/todoStore";
-
-const TodoItem = ({ todo }) => {
-    const { toggleTodo, removeTodo } = useTodoStore();
-
+function TodoItem({todo}) {
     return (
-        <li>
-            <span
-                onClick={() => toggleTodo(todo.id)}
-                style={{
-                    textDecoration: todo.completed ? "line-through" : "none",
-                }}>
-                {todo.title}
-            </span>
-            <button onClick={() => removeTodo(todo.id)}>X</button>
-        </li >
-    );
-};
+        <>
+            <input
+              type="checkbox"
+              name="done"
+              id=""
+              className="size-5 cursor-pointer rounded border-slate-300 border-b-gray-500 transition-all checked:border-blue-600 checked:bg-blue-400 hover:shadow-md" />
+            <span className="mx-4"
+              >{todo.text}</span
+            >
+            <div className="ml-auto flex space-x-2">
+              <button className="bg-[#29b83a] px-4 py-2 text-white">
+                bearbeiten
+              </button>
+              <button className="bg-[#C850C0] px-4 py-2 text-white">löschen</button>
+            </div>
+
+              </>
+
+    )
+}
 
 export default TodoItem;

@@ -1,28 +1,35 @@
-import React from "react";
-import useTodoStore from "../stores/todoStore";
+import { useState } from "react";
 
-const TodoForm = () => {
-    const [title, setTitle] = React.useState("");
-    const addTodo = useTodoStore((state) => state.addTodo);
+function TodoForm({addTodo, todos}) {
+    const [input, setInput] = useState('');
 
-    const handleSubmit = (e) => {
+     const handleAddTodo = (e) => {
         e.preventDefault();
-        if (title.trim()) {
-            addTodo(title);
-            setTitle("");
-            }
-        };
+        addTodo(input);
+        setInput('');
+     }
 
-        return (
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                />
-                <button type="submit">Add Todo</button>
+    return (
+        <div className="mt-4 flex justify-between">
+            <form onSubmit={handleAddTodo}>
+          <input
+            type="text"
+            name="todo"
+            placeholder="Neues Todo erstellen"
+            id="todo-item"
+            className="mr-3 w-full border p-2"
+            value={input}
+            onChange={(e)=>setInput(e.target.value)}
+            />
+          <button
+            type="submit"
+            className="bg-[#0093E9] px-4 py-2 font-semibold text-white">
+            {/* {todos[0].text} */}
+            speichern
+          </button>
             </form>
-    );
-};
+        </div>
+    )
+}
 
 export default TodoForm;
