@@ -9,6 +9,11 @@ function TodoList() {
         {id: 3, text: "Test", completed: false}
     ]);
 
+    // handleDelete function
+    const handleDelete = (id) => {
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
+
     // handleUpdate function
     const handleUpdate = (id, updatedData) => {
         setTodos(todos.map((todo) => todo.id === id ? { ...todo, ...updatedData } : todo));
@@ -58,7 +63,7 @@ function TodoList() {
         <ul>
             {todos.map((todo) => (
                 <li key={todo.id} className="flex items-center justify-start border-t border-gray-300 py-2">
-                    <TodoItem todo={todo} key={todo.id} onUpdate={handleUpdate}/>
+                    <TodoItem todo={todo} key={todo.id} onUpdate={handleUpdate} onDelete={handleDelete} />
                 </li>
             ))}
         </ul>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function TodoItem({ todo, onUpdate }) {
+function TodoItem({ todo, onUpdate, onDelete }) {
     const [isChecked, setIsChecked] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(todo.text);
@@ -24,6 +24,10 @@ function TodoItem({ todo, onUpdate }) {
 
     const handleInputChange = (e) => {
         setEditText(e.target.value);
+    };
+
+    const handleDeleteClick = () => {
+        onDelete(todo.id);
     };
     
     return (
@@ -61,7 +65,12 @@ function TodoItem({ todo, onUpdate }) {
                         bearbeiten
                     </button>
                 )}
-              <button className="bg-[#C850C0] px-4 py-2 text-white">löschen</button>
+                <button
+                    className="bg-[#C850C0] px-4 py-2 text-white"
+                    onClick={handleDeleteClick}
+                >
+                    löschen
+                </button>
             </div>
 
               </>
