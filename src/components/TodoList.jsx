@@ -9,6 +9,11 @@ function TodoList() {
         {id: 3, text: "Test", completed: false}
     ]);
 
+    // handleUpdate function
+    const handleUpdate = (id, updatedData) => {
+        setTodos(todos.map((todo) => todo.id === id ? { ...todo, ...updatedData } : todo));
+    };
+
     // function to add a todo
     const addTodo = (todo) => {
         // early return for empty todo
@@ -53,7 +58,7 @@ function TodoList() {
         <ul>
             {todos.map((todo) => (
                 <li key={todo.id} className="flex items-center justify-start border-t border-gray-300 py-2">
-                    <TodoItem todo={todo}/>
+                    <TodoItem todo={todo} key={todo.id} onUpdate={handleUpdate}/>
                 </li>
             ))}
         </ul>
